@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Trait\ImageValidate;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Thread;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ThreadController extends Controller
 {
+    use ImageValidate;
     /**
      * Display a listing of the resource.
      *
@@ -48,13 +51,41 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
+
+        // $rules = [];
+
+        // $image_max_size = 256 * 2;
+
+        // foreach($request->file('file') as $index => $file){
+        //     if(in_array($file->getMimeType(), ['image/jpg', 'image/jpeg', 'image/png','image/gif']) {
+        //   $rules["file.$index"] = ["max:$image_max_size"];
+        //     } else {
+
+        //   // Always non-validating => returns error
+        //   $rules["file.$index"] = ['bail', 'mimes:jpg,jpeg,png'];
+        //     }
+        // }
+
+        // $request->validate($rules);
         //
+        
+        $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:512|',],['image.required'=>'Image extentions must be " Jpg , Png , Jpeg , Gif , Svg "']);
+        $Image=$request->file('image');
+        $PostImage=time()."_".$Image->getClientOriginalName();
+        $Image->move('img',$PostImage);
+       
+        // $request->validate([
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|min:512|',
+        // ]);
         
 
         Thread::create([
-            'author'=>$request->author,
             'title'=> $request->title,
-            'content'=> $request->description
+            'content'=> $request->description,
+            'author'=>Auth::user()->name,
+            'user_id'=> Auth::user()->id,
+            'image'=>$PostImage,
 
         ]);
         return redirect('/admin/threads');
@@ -67,6 +98,12 @@ class ThreadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // public function rules()
+    // {
+    //     return [
+    //             'image' => ['required|mimes:png,jpeg,jpg,gif','image|min:512'],
+    //         ];
+    // }
     public function show($id)
     {
         //

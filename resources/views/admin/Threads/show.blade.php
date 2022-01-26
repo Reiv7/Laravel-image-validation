@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container">
-        <h1 class="text-center"> Show {{$thread->title}} Information</h1>
+        <h1 class="text-center"> Show {{$user->name}} Threads</h1>
         <form>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Author</label>

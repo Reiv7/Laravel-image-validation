@@ -6,6 +6,7 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Image</th>
                 <th scope="col">Title</th>
                 <th scope="col">Content</th>
                 <th scope="col">Author</th>
@@ -19,6 +20,7 @@
                 
               <tr>
                 <th scope="row">1</th>
+                <td><img src="{{URL::asset('img/')}}/{{$thread->image}}"height="50vh"></td>
                 <td>{{$thread->title}}</td>
                 <td>{{$thread->content}}</td>
                 <td>{{$thread->author}}</td>

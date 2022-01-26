@@ -1,5 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html 
+@if (LaravelLocalization::getCurrentLocale() == "en")
+    lang="en" dir="ltr"
+    @else
+    lang="ar" dir="rtl"
+@endif
+
+>
 
 <head>
     <!-- Required meta tags -->

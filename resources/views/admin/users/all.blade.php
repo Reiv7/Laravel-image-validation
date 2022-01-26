@@ -32,7 +32,7 @@
                         @method('DELETE')
                         <input type="submit" class="btn btn-danger" value="Delete" title="click for delete" onclick="return confirm('Are You Sure You Want To Delete This User?')">
                     </form>
-                    <a class="btn btn-dark" href="{{route('threads.show', $user->thread_id)}}" >Show Threads</a>
+                    <a class="btn btn-dark" href="{{route('users.showthreads', $user->id)}}" >Show Threads</a>
                     {{-- <a class="btn btn-dark">Add Role</a> --}}
                 </td>
               </tr>

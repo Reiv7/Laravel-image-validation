@@ -1,4 +1,4 @@
 @extends('layouts.admin')
 @section('content')
-    <h1> Yoo </h1>
+    <h1> {{__('admin.dashboard')}} </h1>
 @endsection

@@ -9,9 +9,9 @@ class Thread extends Model
 {
     
     use HasFactory;
-    protected $fillable = ['author','title','content'];
+    protected $fillable = ['author','title','content','user_id','image'];
     public function threads(){
-        return $this->hasOne(User::class,'thread_id','id');
+        return $this->hasMany(User::class,'thread_id','id');
     }
     // public function users(){
     //     return $this->hasMany(User::class,'thread_id','id');

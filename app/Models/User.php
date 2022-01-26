@@ -49,6 +49,6 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class,'role_id','id');
     }
     public function threads(){
-        return $this->belongsTo(Thread::class,'thread_id','id');
+        return $this->hasMany(Thread::class,'user_id','id');
     }
 }

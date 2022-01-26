@@ -5,13 +5,15 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
-
+use App\Http\Controllers\Admin\Trait;
+use App\Http\Controllers\Admin\Trait\ShowThreads;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
 
 class UsersController extends Controller
 {
+    use ShowThreads;
+
     /**
      * Display a listing of the resource.
      *
@@ -130,4 +132,5 @@ class UsersController extends Controller
         $user->delete();
         return redirect()->back();
     }
+    
 }
